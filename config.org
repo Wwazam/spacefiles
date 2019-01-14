@@ -4,40 +4,40 @@
 
 #+BEGIN_SRC emacs-lisp
 
- (setq powerline-default-separator 'slant)
+ (setq powerline-default-separator 'contour)
 
 #+END_SRC
-* Navigation
-** Avy
+
+*** Remove minor modes
 
 #+BEGIN_SRC emacs-lisp
 
-    (define-key evil-insert-state-map (kbd "C-.") 'avy-goto-word-1)
-    (define-key evil-normal-state-map (kbd "C-.") 'avy-goto-word-1)
-    (define-key evil-visual-state-map (kbd "C-.") 'avy-goto-word-1)
-    (define-key evil-motion-state-map (kbd "C-.") 'avy-goto-word-1)
+(spaceline-toggle-minor-modes-off)
+
+#+END_SRC
+
+* navigation
+** avy
+
+#+BEGIN_SRC emacs-lisp
+
+  (define-key evil-insert-state-map (kbd "C-.") 'avy-goto-word-1)
+  (define-key evil-normal-state-map (kbd "C-.") 'avy-goto-word-1)
+  (define-key evil-visual-state-map (kbd "C-.") 'avy-goto-word-1)
+  (define-key evil-motion-state-map (kbd "C-.") 'avy-goto-word-1)
 
 #+END_SRC
 
 * Evil
 ** jk to Normal Mode
 
-# #+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp
 
-#   (use-package key-chord
-#     :ensure t)
-#   (setq key-chord-two-keys-delay 1)
-#   (key-chord-mode 1)
+(setq-default evil-escape-unordered-key-sequence "jk")
 
-#   (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
-#   (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-#   (key-chord-define evil-replace-state-map "kj" 'evil-normal-state)
-#   (key-chord-define evil-replace-state-map "jk" 'evil-normal-state)
+#+END_SRC
 
-# #+END_SRC
 
-* Org
-** Org Bullets
 Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
