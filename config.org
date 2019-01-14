@@ -33,10 +33,26 @@
 
 #+BEGIN_SRC emacs-lisp
 
+(setq-default evil-escape-key-sequence "jk")
 (setq-default evil-escape-unordered-key-sequence "jk")
+(setq-default evil-escape-delay 0.2)
 
 #+END_SRC
 
+* Layouts
+** Base Directory
+
+#+BEGIN_SRC emacs-lisp
+
+(setq spacemacs-layouts-directory "~/.spacemacs/layouts/")
+(setq persp-save-dir "~/.spacemacs.d/layout/")
+#+END_SRC
+
+#+RESULTS:
+: ~/.spacemacs/layouts/
+
+* Org
+** Org-bullets
 
 Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
@@ -52,4 +68,70 @@ Makes it all look a bit nicer, I hate looking at asterisks.
       'selective-display (string-to-vector " …")) ; or whatever you like
 #+END_SRC
 
+** TO DO keywords
 
+#+BEGIN_SRC emacs-lisp
+  (with-eval-after-load 'org
+    (setq org-todo-keywords 
+        '((sequence "NOW(n)" "TODO(t)" "CHECK(c@)" "LATER(l)" "WAIT(w@)" "|" "DONE(d!)" )
+        (sequence "BUG(b@)" "ISSUE(i@)" "|" "FIXED(f!)")
+        (sequence "|" "CANCELED(a@)")
+    ))
+
+    (setq org-todo-keyword-faces
+        '(
+            ("NOW" .(:foreground "#ac7373" :weight bold)) 
+            ("TODO" .(:foreground "#bc8383" :weight bold)) 
+            ("DONE" .(:foreground "#94bff3")) 
+            ("LATER" .(:foreground "#ffc9a4")) 
+            ("CHECK" .(:foreground "#f0dfaf")) 
+            ("WAIT" .(:foreground "#ebe9bf")) 
+            ("BUG" .(:foreground "#8c5353" :weight bold)) 
+            ("ISSUE" .(:foreground "#dfaf8f")) 
+            ("FIXED" .(:foreground "#9fc59f"))
+            ("CANCELED" .(:foreground "#7f9f7f"))
+    ))
+
+    (setq org-log-into-drawer t)
+  )
+#+END_SRC
+
+** ISSUE < & > as shiftmetaleft/right
+   :LOGBOOK:
+   - State "ISSUE"      from              [2019-01-14 lun. 16:25] \\
+     doesn't work
+   :END:
+
+  #+BEGIN_SRC emacs-lisp
+    (use-package org
+      :ensure t
+      :bind
+      (">" . org-shiftmetaleft)
+      ("<" . org-shiftmetaright)
+    )
+#+END_SRC
+
+** Capture templates
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-defaults-notes-file "~/Dropbox/document/notes/notes.org")
+  (setq org-capture-templates
+        '(("t" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Tasks")
+               "* TODO %?\n")
+          ("i" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Tasks")
+               "* TODO %?\n %i\n\n")
+          ("j" "Journal" entry (file+datetree "~/Dropbox/document/notes/diary.org")
+           "* %?\n")
+          ("a" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Evenements")
+           "* %?\n")
+          ))
+#+END_SRC
+
+* Elfeed
+* File
+
+#+BEGIN_SRC emacs-lisp
+
+(setq rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed/elfeed.org"))
+
+#+END_SRC
