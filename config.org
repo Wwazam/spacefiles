@@ -35,7 +35,7 @@
 
 (setq-default evil-escape-key-sequence "jk")
 (setq-default evil-escape-unordered-key-sequence "jk")
-(setq-default evil-escape-delay 0.2)
+(setq-default evil-escape-delay 0.5)
 
 #+END_SRC
 
@@ -116,22 +116,40 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
   (setq org-defaults-notes-file "~/Dropbox/document/notes/notes.org")
   (setq org-capture-templates
-        '(("t" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Tasks")
-               "* TODO %?\n")
-          ("i" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Tasks")
-               "* TODO %?\n %i\n\n")
-          ("j" "Journal" entry (file+datetree "~/Dropbox/document/notes/diary.org")
+        '(
+          ("h" "Home Entries")
+          ("ht" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Home")
+            "* TODO %?\n")
+          ("hi" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Home")
+           "* TODO %?\n %i\n\n")
+          ("hj" "Journal" entry (file+datetree "~/Dropbox/document/notes/diary.org")
            "* %?\n")
-          ("a" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Evenements")
+          ("ha" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Home")
            "* %?\n")
+          ("w" "Work Entries")
+          ("wt" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Work")
+            "* TODO %?\n")
+          ("wi" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Work")
+            "* TODO %?\n %i\n\n")
+          ("wj" "Journal" entry (file+datetree "~/Dropbox/document/notes/journal.org")
+            "* %?\n")
+          ("wa" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Work")
+            "* %?\n")
           ))
 #+END_SRC
 
-* Elfeed
 * File
 
 #+BEGIN_SRC emacs-lisp
 
 (setq rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed/elfeed.org"))
+
+#+END_SRC
+* Perspective
+** Load Default Perspective
+
+#+BEGIN_SRC emacs-lisp
+
+(persp-switch "Basic")
 
 #+END_SRC
