@@ -1,3 +1,12 @@
+#+STARTUP: content
+
+* Own menu
+
+#+BEGIN_SRC emacs-lisp
+
+ (spacemacs/declare-prefix "o" "own-menu")
+
+#+END_SRC
 * Graphic
 ** Modeline
 *** Separators
@@ -5,6 +14,7 @@
 #+BEGIN_SRC emacs-lisp
 
  (setq powerline-default-separator 'contour)
+
 
 #+END_SRC
 
@@ -96,6 +106,9 @@ Makes it all look a bit nicer, I hate looking at asterisks.
   )
 #+END_SRC
 
+#+RESULTS:
+: t
+
 ** ISSUE < & > as shiftmetaleft/right
    :LOGBOOK:
    - State "ISSUE"      from              [2019-01-14 lun. 16:25] \\
@@ -103,12 +116,12 @@ Makes it all look a bit nicer, I hate looking at asterisks.
    :END:
 
   #+BEGIN_SRC emacs-lisp
-    (use-package org
-      :ensure t
-      :bind
-      (">" . org-shiftmetaleft)
-      ("<" . org-shiftmetaright)
-    )
+    ;(use-package org
+    ;  :ensure t
+    ;  :bind
+    ;  (">" . org-shiftmetaleft)
+    ;  ("<" . org-shiftmetaright)
+    ;)
 #+END_SRC
 
 ** Capture templates
@@ -138,6 +151,70 @@ Makes it all look a bit nicer, I hate looking at asterisks.
           ))
 #+END_SRC
 
+** Agenda
+*** Transient state
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package org-agenda
+    :config
+      (evilified-state-evilify-map org-agenda-mode-map
+        :mode org-agenda-mode
+        :bindings
+          (kbd "C-SPC") 'spacemacs/org-agenda-transient-state/body
+          (kbd "C-c C-c") 'spacemacs/org-agenda-transient-state/body
+    )
+  )
+#+END_SRC
+** Plantuml
+
+*** Babel
+
+ #+BEGIN_SRC emacs-lisp
+
+ (org-babel-do-load-languages
+    'org-babel-load-languages
+    '( (plantuml  . t)
+       ))
+
+ #+END_SRC
+
+*** jar path
+
+#+BEGIN_SRC emacs-lisp
+
+(setq org-plantuml-jar-path "~/.spacemacs.d/extra/plantuml.jar")
+
+#+END_SRC
+
+** Scrivener
+
+#+BEGIN_SRC emacs-lisp
+  (defun my/org-tree-to-indirect-buffer-follow ()
+    "Open tree in indirect buffer and follows it"
+    (interactive)
+    (org-tree-to-indirect-buffer)
+    (windmove-right)
+    )
+
+  (defun my/scrivener ()
+    "Opens the outline of the org doc on the left and allows you to open the content on the right"
+    (interactive)
+    (delete-other-windows)
+    (split-window-right)
+    (golden-ratio-mode 1)
+    (setq golden-ratio-adjust-factor 1.3)
+    )
+
+  (add-hook 'org-mode-hook 
+            (lambda ()
+              (define-key evil-normal-state-map (kbd "<return>") 'org-tree-to-indirect-buffer)
+              (define-key evil-normal-state-map (kbd "S-<return>") 'my/org-tree-to-indirect-buffer-follow)
+              (spacemacs/set-leader-keys "os" 'my/scrivener)
+  ))
+
+#+END_SRC
+
 * File
 
 #+BEGIN_SRC emacs-lisp
@@ -153,3 +230,59 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 (persp-switch "Basic")
 
 #+END_SRC
+* Display
+** golden mode
+
+#+BEGIN_SRC emacs-lisp
+
+  (golden-ratio-mode 1)
+
+#+END_SRC
+
+* Yasnippet
+** Directory
+
+#+BEGIN_SRC emacs-lisp
+
+(setq yas-snippet-dirs
+      '("~/.spacemacs.d/snippets"                 ;; personal snippets
+        ))
+
+#+END_SRC
+** Expand key
+
+#+BEGIN_SRC emacs-lisp
+
+(global-unset-key "\C-n")
+(define-key yas-minor-mode-map (kbd "C-n") 'yas-ido-expand)
+
+#+END_SRC
+* Plantuml
+** Hook
+
+#+BEGIN_SRC emacs-lisp
+
+(add-hook 'plantuml-mode-hook 'prog-mode-hook)
+
+#+END_SRC
+
+** warning
+
+#+BEGIN_SRC emacs-lisp
+
+(setq plantuml-suppress-deprecation-warning nil)
+
+#+END_SRC
+
+* Neotree
+** Theme
+
+#+BEGIN_SRC emacs-lisp
+
+  (use-package all-the-icons
+    :ensure t)
+
+  (setq neo-theme 'icons)
+
+#+END_SRC
+

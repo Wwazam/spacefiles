@@ -31,9 +31,11 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     vimscript
      ;;;; PROGRAMMING
      emacs-lisp
      javascript
+     plantuml
      python
 
      ;;;; TOOLS
@@ -58,7 +60,9 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      all-the-icons
+                                      )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -344,8 +348,14 @@ you should place your code here."
     ("~/Dropbox/document/notes/journal.org" "~/Dropbox/document/notes/inbox.org" "~/Dropbox/document/notes/diary.org" "~/Dropbox/document/notes/agenda.org" "~/Dropbox/document/notes/todo.org")))
  '(package-selected-packages
    (quote
-    (typit mmt sudoku pacmacs 2048-game mu4e-maildirs-extension mu4e-alert ht spray engine-mode web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode xkcd page-break-lines dashboard elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify powerline smeargle pyvenv pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow live-py-mode hy-mode dash-functional htmlize parent-mode helm-pydoc projectile pkg-info epl helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx highlight evil-magit magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg cython-mode bind-map bind-key packed anaconda-mode pythonic helm helm-core popup ivy undo-tree hydra f s dash async avy key-chord ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (vimrc-mode dactyl-mode all-the-icons artbollocks-mode plantuml-mode typit mmt sudoku pacmacs 2048-game mu4e-maildirs-extension mu4e-alert ht spray engine-mode web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode xkcd page-break-lines dashboard elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify powerline smeargle pyvenv pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow live-py-mode hy-mode dash-functional htmlize parent-mode helm-pydoc projectile pkg-info epl helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx highlight evil-magit magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg cython-mode bind-map bind-key packed anaconda-mode pythonic helm helm-core popup ivy undo-tree hydra f s dash async avy key-chord ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
+ '(safe-local-variable-values
+   (quote
+    ((eval org-content 2)
+     (eval progn
+           (pp-buffer)
+           (indent-buffer)))))
  '(vc-annotate-background "#2B2B2B")
  '(vc-annotate-color-map
    (quote
