@@ -167,7 +167,6 @@ Makes it all look a bit nicer, I hate looking at asterisks.
   )
 #+END_SRC
 ** Plantuml
-
 *** Babel
 
  #+BEGIN_SRC emacs-lisp
@@ -184,6 +183,7 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
 
 (setq org-plantuml-jar-path "~/.spacemacs.d/extra/plantuml.jar")
+(setq plantuml-jar-path "~/.spacemacs.d/extra/plantuml.jar")
 
 #+END_SRC
 
@@ -212,6 +212,14 @@ Makes it all look a bit nicer, I hate looking at asterisks.
               (define-key evil-normal-state-map (kbd "S-<return>") 'my/org-tree-to-indirect-buffer-follow)
               (spacemacs/set-leader-keys "os" 'my/scrivener)
   ))
+
+#+END_SRC
+
+** Babel
+
+#+BEGIN_SRC emacs-lisp
+
+(setq org-confirm-babel-evaluate nil)
 
 #+END_SRC
 
