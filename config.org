@@ -223,21 +223,6 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 
 #+END_SRC
 
-* File
-
-#+BEGIN_SRC emacs-lisp
-
-(setq rmh-elfeed-org-files (list "~/.spacemacs.d/elfeed/elfeed.org"))
-
-#+END_SRC
-* Perspective
-** Load Default Perspective
-
-#+BEGIN_SRC emacs-lisp
-
-(persp-switch "Basic")
-
-#+END_SRC
 * Display
 ** golden mode
 
