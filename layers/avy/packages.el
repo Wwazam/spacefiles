@@ -1,4 +1,4 @@
-;;; packages.el --- avy layer packages file for Spacemacs.
+;aaa;; packages.el --- avy layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
@@ -36,6 +36,6 @@
 (defun avy/post-init-avy()
   (use-package avy
     :ensure t
-    :bind ("C-." . avy-goto-word-1)
+    :bind ("C-." . avy-goto-word-or-subword-1)
     )
 )

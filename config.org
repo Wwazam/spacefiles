@@ -31,10 +31,10 @@
 
 #+BEGIN_SRC emacs-lisp
 
-  (define-key evil-insert-state-map (kbd "C-.") 'avy-goto-word-1)
-  (define-key evil-normal-state-map (kbd "C-.") 'avy-goto-word-1)
-  (define-key evil-visual-state-map (kbd "C-.") 'avy-goto-word-1)
-  (define-key evil-motion-state-map (kbd "C-.") 'avy-goto-word-1)
+  (define-key evil-insert-state-map (kbd "C-.") 'avy-goto-word-or-subword-1)
+  (define-key evil-normal-state-map (kbd "C-.") 'avy-goto-word-or-subword-1)
+  (define-key evil-visual-state-map (kbd "C-.") 'avy-goto-word-or-subword-1)
+  (define-key evil-motion-state-map (kbd "C-.") 'avy-goto-word-or-subword-1)
 
 #+END_SRC
 
@@ -56,13 +56,15 @@
 
 (setq spacemacs-layouts-directory "~/.spacemacs/layouts/")
 (setq persp-save-dir "~/.spacemacs.d/layout/")
+
 #+END_SRC
 
 * Workspaces
 
 #+BEGIN_SRC emacs-lisp
 
-  (spacemacs/set-leader-keys "l" spacemacs/workspaces-transient-state)
+  (spacemacs/set-leader-keys "l" 'spacemacs/workspaces-transient-state/body)
+
 
 #+END_SRC
 * Org
@@ -143,6 +145,7 @@ Makes it all look a bit nicer, I hate looking at asterisks.
            "* %?\n")
           ("ha" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Home")
            "* %?\n")
+
           ("w" "Work Entries")
           ("wt" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Work")
             "* TODO %?\n")
