@@ -58,9 +58,13 @@
 (setq persp-save-dir "~/.spacemacs.d/layout/")
 #+END_SRC
 
-#+RESULTS:
-: ~/.spacemacs/layouts/
+* Workspaces
 
+#+BEGIN_SRC emacs-lisp
+
+  (spacemacs/set-leader-keys "l" spacemacs/workspaces-transient-state)
+
+#+END_SRC
 * Org
 ** Org-bullets
 
