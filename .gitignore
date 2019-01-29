@@ -3,3 +3,4 @@
 config.el
 *.bkp
 *persp-auto-save*
+layout/*

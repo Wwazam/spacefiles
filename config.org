@@ -230,6 +230,15 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 
 #+END_SRC
 
+** TODO M-Ret
+
+  (add-hook 'org-mode-hook 
+            (lambda ()
+              (define-key evil-normal-state-map (kbd "<return>") 'org-tree-to-indirect-buffer)
+              (define-key evil-normal-state-map (kbd "S-<return>") 'my/org-tree-to-indirect-buffer-follow)
+              (spacemacs/set-leader-keys "os" 'my/scrivener)
+  ))
+
 * Display
 ** golden mode
 

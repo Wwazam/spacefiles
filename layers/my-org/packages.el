@@ -9,7 +9,7 @@
 ;;
 ;;; License: GPLv3
 
-(setq org-packages
+(setq my-org-packages
   '(
     company
     company-emoji
@@ -35,17 +35,17 @@
     persp-mode
     ))
 
-(defun org/post-init-company ()
+(defun my-org/post-init-company ()
   (spacemacs|add-company-hook org-mode)
   (push 'company-capf company-backends-org-mode))
 
-(defun org/post-init-company-emoji ()
+(defun my-org/post-init-company-emoji ()
   (push 'company-emoji company-backends-org-mode))
 
-(defun org/post-init-emoji-cheat-sheet-plus ()
+(defun my-org/post-init-emoji-cheat-sheet-plus ()
   (add-hook 'org-mode-hook 'spacemacs/delay-emoji-cheat-sheet-hook))
 
-(defun org/init-evil-org ()
+(defun my-org/init-evil-org ()
   (use-package evil-org
     :commands (evil-org-mode evil-org-recompute-clocks)
     :init (add-hook 'org-mode-hook 'evil-org-mode)
@@ -57,28 +57,28 @@
         "C" 'evil-org-recompute-clocks)
       (spacemacs|diminish evil-org-mode " ⓔ" " e"))))
 
-(defun org/post-init-evil-surround ()
+(defun my-org/post-init-evil-surround ()
   (defun spacemacs/add-org-surrounds ()
     (push '(?: . spacemacs//surround-drawer) evil-surround-pairs-alist)
     (push '(?# . spacemacs//surround-code) evil-surround-pairs-alist))
   (add-hook 'org-mode-hook 'spacemacs/add-org-surrounds))
 
-(defun org/init-gnuplot ()
+(defun my-org/init-gnuplot ()
   (use-package gnuplot
     :defer t
     :init (spacemacs/set-leader-keys-for-major-mode 'org-mode
             "tp" 'org-plot/gnuplot)))
 
-(defun org/init-htmlize ()
+(defun my-org/init-htmlize ()
   (use-package htmlize
     :defer t))
 
-(defun org/pre-init-mu4e ()
+(defun my-org/pre-init-mu4e ()
   ;; Load org-mu4e when mu4e is actually loaded
   (spacemacs|use-package-add-hook mu4e
     :post-config (require 'org-mu4e nil 'noerror)))
 
-(defun org/init-ob ()
+(defun my-org/init-ob ()
   (use-package ob
     :defer t
     :init
@@ -91,7 +91,7 @@
       ;; Fix redisplay of inline images after a code block evaluation.
       (add-hook 'org-babel-after-execute-hook 'spacemacs/ob-fix-inline-images))))
 
-(defun org/init-org ()
+(defun my-org/init-org ()
   (use-package org
     :defer t
     :commands (orgtbl-mode)
@@ -331,7 +331,7 @@ Will work on both org-mode and any mode that accepts plain html."
           (lambda () (interactive)
             (org-eval-in-calendar '(calendar-forward-year 1))))))))
 
-(defun org/init-org-agenda ()
+(defun my-org/init-org-agenda ()
   (use-package org-agenda
     :defer t
     :init
@@ -442,7 +442,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
       (kbd "C-SPC") 'spacemacs/org-agenda-transient-state/body
       (kbd "s-M-SPC") 'spacemacs/org-agenda-transient-state/body)))
 
-(defun org/init-org-download ()
+(defun my-org/init-org-download ()
   (use-package org-download
     :commands (org-download-enable
                org-download-yank
@@ -454,7 +454,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
         "iy" 'org-download-yank
         "is" 'org-download-screenshot))))
 
-(defun org/init-org-mime ()
+(defun my-org/init-org-mime ()
   (use-package org-mime
     :defer t
     :commands (org-mime-htmlize org-mime-org-buffer-htmlize)
@@ -465,7 +465,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
       (spacemacs/set-leader-keys-for-major-mode 'org-mode
         "m" 'org-mime-org-buffer-htmlize))))
 
-(defun org/init-org-pomodoro ()
+(defun my-org/init-org-pomodoro ()
   (use-package org-pomodoro
     :defer t
     :init
@@ -477,7 +477,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
       (spacemacs/set-leader-keys-for-major-mode 'org-agenda-mode
         "p" 'org-pomodoro))))
 
-(defun org/init-org-present ()
+(defun my-org/init-org-present ()
   (use-package org-present
     :defer t
     :init
@@ -504,16 +504,16 @@ Headline^^            Visit entry^^               Filter^^                    Da
       (add-hook 'org-present-mode-quit-hook 'spacemacs//org-present-end))))
 
 
-(defun org/init-ox-twbs ()
+(defun my-org/init-ox-twbs ()
   (spacemacs|use-package-add-hook org :post-config (require 'ox-twbs)))
 
-(defun org/init-ox-gfm ()
+(defun my-org/init-ox-gfm ()
   (spacemacs|use-package-add-hook org :post-config (require 'ox-gfm)))
 
-(defun org/init-ox-reveal ()
+(defun my-org/init-ox-reveal ()
   (spacemacs|use-package-add-hook org :post-config (require 'ox-reveal)))
 
-(defun org/post-init-persp-mode ()
+(defun my-org/post-init-persp-mode ()
   (spacemacs|define-custom-layout "@Org"
     :binding "o"
     :body
