@@ -58,16 +58,6 @@
 
 #+END_SRC
 
-* Layouts
-** Base Directory
-
-#+BEGIN_SRC emacs-lisp
-
-(setq spacemacs-layouts-directory "~/.spacemacs/layouts/")
-(setq persp-save-dir "~/.spacemacs.d/layout/")
-
-#+END_SRC
-
 * Org
 ** Org-bullets
 
