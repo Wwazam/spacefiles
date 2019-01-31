@@ -14,7 +14,7 @@
     company
     company-emoji
     emoji-cheat-sheet-plus
-    (evil-org :location local)
+    evil-org
     evil-surround
     gnuplot
     htmlize
@@ -47,6 +47,7 @@
 
 (defun my-org/init-evil-org ()
   (use-package evil-org
+    :ensure t
     :commands (evil-org-mode evil-org-recompute-clocks)
     :init (add-hook 'org-mode-hook 'evil-org-mode)
     :config

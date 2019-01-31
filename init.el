@@ -36,9 +36,11 @@ values."
      javascript
      plantuml
      python
+      django
 
      ;;;; TOOLS
      auto-completion
+      my-snippets
      elfeed
      git
      helm
@@ -46,6 +48,7 @@ values."
      my-org
      search-engine
      speed-reading
+     ;;spell-checking
 
      ;;;; PERSO
      avy
@@ -132,7 +135,8 @@ values."
    ;; List of themes, the first of the list is loaded when spacemacs starts.
    ;; Press <SPC> T n to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
-   dotspacemacs-themes '(zenburn
+   dotspacemacs-themes '(jazz
+                         zenburn
                          spacemacs-dark)
    ;; If non nil the cursor color matches the state color in GUI Emacs.
    dotspacemacs-colorize-cursor-according-to-state t
@@ -335,10 +339,15 @@ you should place your code here."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#313131" "#D9A0A0" "#8CAC8C" "#FDECBC" "#99DDE0" "#E090C7" "#A0EDF0" "#DCDCCC"])
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(evil-want-Y-yank-to-eol nil)
  '(fci-rule-color "#383838" t)
+ '(hl-sexp-background-color "#1c1f26")
  '(nrepl-message-colors
    (quote
     ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
@@ -347,7 +356,7 @@ you should place your code here."
     ("~/Dropbox/document/notes/todo.org" "~/Dropbox/document/notes/test.org" "~/Dropbox/document/notes/journal.org" "~/Dropbox/document/notes/inbox.org" "~/Dropbox/document/notes/diary.org" "~/Dropbox/document/notes/agenda.org")))
  '(package-selected-packages
    (quote
-    (gruvbox-theme sexy-monochrome-theme memoize quelpa vimrc-mode dactyl-mode all-the-icons artbollocks-mode plantuml-mode typit mmt sudoku pacmacs 2048-game mu4e-maildirs-extension mu4e-alert ht spray engine-mode web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode xkcd page-break-lines dashboard elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify powerline smeargle pyvenv pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow live-py-mode hy-mode dash-functional htmlize parent-mode helm-pydoc projectile pkg-info epl helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx highlight evil-magit magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg cython-mode bind-map bind-key packed anaconda-mode pythonic helm helm-core popup ivy undo-tree hydra f s dash async avy key-chord ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
+    (yasnippet-snippets pony-mode jazz-theme mmm-mode markdown-toc markdown-mode gh-md sqlplus material-theme flatland-theme naquadah-theme hc-zenburn-theme northcode-theme flyspell-correct-helm flyspell-correct auto-dictionary evil-org gruvbox-theme sexy-monochrome-theme memoize quelpa vimrc-mode dactyl-mode all-the-icons artbollocks-mode plantuml-mode typit mmt sudoku pacmacs 2048-game mu4e-maildirs-extension mu4e-alert ht spray engine-mode web-beautify livid-mode skewer-mode json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern tern coffee-mode xkcd page-break-lines dashboard elfeed-web simple-httpd elfeed-org elfeed-goodies ace-jump-mode noflet elfeed helm-company helm-c-yasnippet fuzzy company-statistics company-anaconda company auto-yasnippet yasnippet ac-ispell auto-complete yapfify powerline smeargle pyvenv pytest pyenv-mode py-isort pip-requirements spinner orgit org-projectile org-category-capture org-present org-pomodoro alert log4e gntp org-mime org-download magit-gitflow live-py-mode hy-mode dash-functional htmlize parent-mode helm-pydoc projectile pkg-info epl helm-gitignore gnuplot gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link flx highlight evil-magit magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg cython-mode bind-map bind-key packed anaconda-mode pythonic helm helm-core popup ivy undo-tree hydra f s dash async avy key-chord ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu elisp-slime-nav dumb-jump diminish define-word column-enforce-mode clean-aindent-mode auto-highlight-symbol auto-compile aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line)))
  '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
  '(safe-local-variable-values
    (quote
