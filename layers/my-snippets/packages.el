@@ -30,12 +30,20 @@
 ;;; Code:
 
 (defconst my-snippets-packages
-  '(yasnippet-snippets)
+  '(yasnippet-classic-snippets
+    yasnippet-snippets)
+  )
+
+(defun my-snippets/init-yasnippet-classic-snippets()
+  (use-package yasnippet-classic-snippets
+    :ensure t
+    :config (setq yas/snippet-dirs '(yasnippet-classic-snippets-dir)))
   )
 
 (defun my-snippets/init-yasnippet-snippets()
   (use-package yasnippet-snippets
-    :ensure t)
+    :ensure t
+    :config (add-to-list 'yas/snippet-dirs yasnippet-snippets-dir))
   )
 
 ;;; packages.el ends here
