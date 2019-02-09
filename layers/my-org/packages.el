@@ -14,7 +14,7 @@
     company
     company-emoji
     emoji-cheat-sheet-plus
-    (evil-org :location local)
+    evil-org
     evil-surround
     gnuplot
     htmlize
@@ -47,6 +47,7 @@
 
 (defun my-org/init-evil-org ()
   (use-package evil-org
+    :ensure t
     :commands (evil-org-mode evil-org-recompute-clocks)
     :init (add-hook 'org-mode-hook 'evil-org-mode)
     :config
@@ -439,7 +440,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
       (kbd "gd") 'org-agenda-toggle-time-grid
       (kbd "gr") 'org-agenda-redo
       (kbd "M-RET") 'org-agenda-show-and-scroll-up
-      (kbd "M-SPC") 'spacemacs/org-agenda-transient-state/body
+      (kbd "C-SPC") 'spacemacs/org-agenda-transient-state/body
       (kbd "s-M-SPC") 'spacemacs/org-agenda-transient-state/body)))
 
 (defun my-org/init-org-download ()
