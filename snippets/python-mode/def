@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: def
+# key: def
+# --
+def ${1:Name}(${2:Args}):
+    """
+    ${3:Description}
+    """
+    $0

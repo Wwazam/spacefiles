@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Org Codeblock
+# key: <s
+# --
+#+BEGIN_SRC ${1:Language}
+
+$0
+
+#+END_SRC
