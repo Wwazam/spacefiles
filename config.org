@@ -244,7 +244,7 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 
 #+BEGIN_SRC emacs-lisp
 
-(add-to-list 'yas-snippet-dirs "~/.spacemacs.d/personal snippets")
+(add-to-list 'yas-snippet-dirs "~/.spacemacs.d/snippets")
 
 #+END_SRC
 ** Expand key
