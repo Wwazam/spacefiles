@@ -1,5 +1,3 @@
-#+STARTUP: content
-
 * Own menu
 
 #+BEGIN_SRC emacs-lisp
@@ -49,6 +47,13 @@
 
 #+END_SRC
 
+** emacs state by default
+   
+#+BEGIN_SRC emacs-lisp
+
+  ; (add-to-list 'evil-emacs-state-modes org-agenda calc-mode)
+
+#+END_SRC
 * Ispell
 ** disabled by default
    
@@ -80,31 +85,22 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
   (with-eval-after-load 'org
     (setq org-todo-keywords 
-        '((sequence "NOW(n)" "TODO(t)" "CHECK(c@)" "LATER(l)" "WAIT(w@)" "|" "DONE(d!)" )
-        (sequence "BUG(b@)" "ISSUE(i@)" "|" "FIXED(f!)")
-        (sequence "|" "CANCELED(a@)")
+        '((sequence "TODO(t)" "WAIT(w@)" "|" "DONE(d!)" )
+        (sequence "ISSUE(i@)" "|" "CANCELED(a@)")
     ))
 
     (setq org-todo-keyword-faces
         '(
-            ("NOW" .(:foreground "#ac7373" :weight bold)) 
             ("TODO" .(:foreground "#bc8383" :weight bold)) 
             ("DONE" .(:foreground "#94bff3")) 
-            ("LATER" .(:foreground "#ffc9a4")) 
-            ("CHECK" .(:foreground "#f0dfaf")) 
             ("WAIT" .(:foreground "#ebe9bf")) 
-            ("BUG" .(:foreground "#8c5353" :weight bold)) 
             ("ISSUE" .(:foreground "#dfaf8f")) 
-            ("FIXED" .(:foreground "#9fc59f"))
             ("CANCELED" .(:foreground "#7f9f7f"))
     ))
 
     (setq org-log-into-drawer t)
   )
 #+END_SRC
-
-#+RESULTS:
-: t
 
 ** ISSUE < & > as shiftmetaleft/right
    :LOGBOOK:
@@ -122,32 +118,25 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+END_SRC
 
 ** Capture templates
-
+   
 #+BEGIN_SRC emacs-lisp
-  (setq org-defaults-notes-file "~/Dropbox/document/notes/notes.org")
+  (setq org-defaults-notes-file "~/documents/notes/notes.org")
   (setq org-capture-templates
         '(
           ("h" "Home Entries")
-          ("ht" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Home")
-            "* TODO %?\n")
-          ("hi" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Home")
+          ("hi" "Inbox" entry (file "~/documents/notes/inbox.org")
            "* TODO %?\n %i\n\n")
-          ("hj" "Journal" entry (file+datetree "~/Dropbox/document/notes/diary.org")
-           "* %?\n")
-          ("ha" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Home")
+          ("hj" "Journal" entry (file+datetree "~/documents/notes/diary.org")
            "* %?\n")
 
           ("w" "Work Entries")
-          ("wt" "Todo" entry (file+headline "~/Dropbox/document/notes/todo.org" "Work")
-            "* TODO %?\n")
-          ("wi" "Inbox" entry (file+headline "~/Dropbox/document/notes/inbox.org" "Work")
+          ("wi" "Inbox" entry (file "~/documents/notes/inbox.org")
             "* TODO %?\n %i\n\n")
-          ("wj" "Journal" entry (file+datetree "~/Dropbox/document/notes/journal.org")
-            "* %?\n")
-          ("wa" "Agenda" entry (file+headline "~/Dropbox/document/notes/agenda.org" "Work")
+          ("wj" "Journal" entry (file+datetree "~/documents/notes/journal.org")
             "* %?\n")
           ))
 #+END_SRC
+
 
 ** Agenda
 *** Transient state
@@ -162,6 +151,59 @@ Makes it all look a bit nicer, I hate looking at asterisks.
           (kbd "C-SPC") 'spacemacs/org-agenda-transient-state/body
           (kbd "C-c C-c") 'spacemacs/org-agenda-transient-state/body
     )
+  )
+#+END_SRC
+*** Custom views
+    
+#+BEGIN_SRC emacs-lisp
+  (defun my/org-agenda-skip-without-match (match)
+    "Skip current headline unless it matches MATCH.
+
+  Return nil if headline containing point matches MATCH (which
+  should be a match string of the same format used by
+  `org-tags-view').  If headline does not match, return the
+  position of the next headline in current buffer.
+
+  Intended for use with `org-agenda-skip-function', where this will
+  skip exactly those headlines that do not match." 
+    (save-excursion
+      (unless (org-at-heading-p) (org-back-to-heading)) 
+      (let ((next-headline (save-excursion
+                             (or (outline-next-heading) (point-max)))))
+        (if (my/org-match-at-point-p match) nil next-headline))))
+
+  (setq org-agenda-custom-commands
+        '(("g" . "GTD contexts")
+          ("gw" "Work" tags-todo "work")
+          ("gc" "Computer" tags-todo "computer")
+          ("gm" "Meeting" tags-todo "meeting")
+          ("gh" "Home" tags-todo "home")
+          ("ge" "Errands" tags-todo "errands")
+          ("G" "GTD Block Agenda"
+           ((tags-todo "work")
+            (tags-todo "computer")
+            (tags-todo "meeting")
+            (tags-todo "home")
+            (tags-todo "errands"))
+           nil                      ;; i.e., no local settings
+           ("~/next-actions.html")) ;; exports block to this file with C-c a e
+
+          ("d" . "Day")
+          ("dd" "Day" agenda "All the events, not filtered"
+           ((org-agenda-span 1)
+            (org-agenda-start-on-weekday nil)
+            ))
+          ("dw" "Work" agenda "Events tagged 'work' and 'meeting'"
+          ((org-agenda-span 1)
+          (org-agenda-start-on-weekday nil)
+          (org-agenda-tag-filter-preset '("+work"))
+          ))
+          ("dp" "Personnal" agenda "Events tagged 'work', 'errands', 'meeting' and 'computer'"
+           ((org-agenda-span 1)
+            (org-agenda-start-on-weekday nil)
+            (org-agenda-tag-filter-preset '("-work"))
+            ))
+          )
   )
 #+END_SRC
 ** Plantuml
@@ -298,3 +340,4 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 
 
 #+END_SRC
+
