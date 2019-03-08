@@ -123,20 +123,22 @@ Makes it all look a bit nicer, I hate looking at asterisks.
   (setq org-defaults-notes-file "~/documents/notes/notes.org")
   (setq org-capture-templates
         '(
-          ("h" "Home Entries")
-          ("hi" "Inbox" entry (file "~/documents/notes/inbox.org")
-           "* TODO %?\n %i\n\n")
-          ("hj" "Journal" entry (file+datetree "~/documents/notes/diary.org")
+          ("h" "Home" entry (file "~/documents/notes/inbox.org")
+           "* TODO %? :home:\n %i\n\n")
+          ("w" "Work" entry (file "~/documents/notes/inbox.org")
+           "* TODO %? :work:\n %i\n\n")
+          ("e" "Errand" entry (file "~/documents/notes/inbox.org")
+           "* TODO %? :errand:\n %i\n\n")
+          ("c" "Computer" entry (file "~/documents/notes/inbox.org")
+           "* TODO %? :computer:\n %i\n\n")
+          ("m" "Meeting" entry (file "~/documents/notes/inbox.org")
+           "* TODO %? :meeting:\n %i\n\n")
+          ("d" "Diary" entry (file+datetree "~/documents/notes/diary.org")
            "* %?\n")
-
-          ("w" "Work Entries")
-          ("wi" "Inbox" entry (file "~/documents/notes/inbox.org")
-            "* TODO %?\n %i\n\n")
-          ("wj" "Journal" entry (file+datetree "~/documents/notes/journal.org")
+          ("j" "Journal" entry (file+datetree "~/documents/notes/journal.org")
             "* %?\n")
           ))
 #+END_SRC
-
 
 ** Agenda
 *** Transient state
