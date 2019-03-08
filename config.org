@@ -280,12 +280,30 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 
 ** TODO M-Ret
 
-  (add-hook 'org-mode-hook 
+  (add-hook 'org-mode-hook
             (lambda ()
-              (define-key evil-normal-state-map (kbd "<return>") 'org-tree-to-indirect-buffer)
-              (define-key evil-normal-state-map (kbd "S-<return>") 'my/org-tree-to-indirect-buffer-follow)
-              (spacemacs/set-leader-keys "os" 'my/scrivener)
-  ))
+              (define-key evil-normal-state-map (kbd "M-<return>") 'org-meta-return)))
+
+** Refile
+*** Sources
+   
+ #+BEGIN_SRC emacs-lisp
+
+
+ (setq org-refile-targets
+       '((org-agenda-files :maxlevel . 1)))
+
+ #+END_SRC
+
+*** Refile on root
+
+#+BEGIN_SRC emacs-lisp
+
+(setq org-refile-use-outline-path 'file)
+(setq org-outline-path-complete-in-steps nil)
+(setq org-refile-allow-creating-parent-nodes 'confirm)
+
+#+END_SRC
 
 * Display
 ** golden mode
@@ -304,6 +322,7 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 (add-to-list 'yas-snippet-dirs "~/.spacemacs.d/snippets")
 
 #+END_SRC
+
 ** Expand key
 
 #+BEGIN_SRC emacs-lisp
