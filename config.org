@@ -1,5 +1,3 @@
-#+STARTUP: content
-
 * Own menu
 
 #+BEGIN_SRC emacs-lisp
@@ -218,6 +216,19 @@ Makes it all look a bit nicer, I hate looking at asterisks.
 #+BEGIN_SRC emacs-lisp
 
 (setq org-confirm-babel-evaluate nil)
+
+#+END_SRC
+
+*** languages
+
+#+BEGIN_SRC emacs-lisp
+
+  (org-babel-do-load-languages
+     'org-babel-load-languages
+     '( (python  . t)
+        (plantuml . t)
+        (emacs-lisp . t)
+        ))
 
 #+END_SRC
 
