@@ -348,7 +348,7 @@ you should place your code here."
  '(company-quickhelp-color-background "#4F4F4F")
  '(company-quickhelp-color-foreground "#DCDCCC")
  '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-color "#383838")
+ '(fci-rule-color "#383838" t)
  '(hl-paren-background-colors (quote ("#2492db" "#95a5a6" nil)))
  '(hl-paren-colors (quote ("#ecf0f1" "#ecf0f1" "#c0392b")))
  '(hl-sexp-background-color "#1c1f26")
