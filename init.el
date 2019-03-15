@@ -48,7 +48,6 @@ values."
      ;ivy
      mu4e
      my-org
-     ;org
      search-engine
      speed-reading
      ;;spell-checking

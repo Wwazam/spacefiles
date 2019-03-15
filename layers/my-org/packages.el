@@ -27,17 +27,15 @@
     org-mime
     org-pomodoro
     org-present
-    (ox-twbs :toggle org-enable-bootstrap-support)
     ;; use a for of ox-gfm to fix index generation
-    (ox-gfm :location (recipe :fetcher github :repo "syl20bnr/ox-gfm")
-            :toggle org-enable-github-support)
-    (ox-reveal :toggle org-enable-reveal-js-support)
+    (ox-gfm :location (recipe :fetcher github :repo "syl20bnr/ox-gfm"))
     persp-mode
     ))
 
 (defun my-org/post-init-company ()
   (spacemacs|add-company-hook org-mode)
-  (push 'company-capf company-backends-org-mode))
+  ;; (push 'company-capf company-backends-org-mode)
+  )
 
 (defun my-org/post-init-company-emoji ()
   (push 'company-emoji company-backends-org-mode))

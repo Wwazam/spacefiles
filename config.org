@@ -140,6 +140,9 @@ Makes it all look a bit nicer, I hate looking at asterisks.
           ))
 #+END_SRC
 
+#+RESULTS:
+| h | Home | entry | (file ~/documents/notes/inbox.org) | * TODO %? :home: |
+
 ** Agenda
 *** Transient state
 
